@@ -1,0 +1,10 @@
+#noItemMessage{
+    font-size: large; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    color:blue; 
+    margin: 2em 0 0 2em;
+}
+
+.items{
+    margin: 1em 0.5em 1em;
+}

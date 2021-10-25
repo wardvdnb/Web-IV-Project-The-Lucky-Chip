@@ -1,0 +1,45 @@
+<div class="slot-screen" fxLayout="column" fxLayoutGap="3%">
+    <mat-icon id="helpButton" fxLAyoutAlign="center" id="helpButton" (click)="openDialog()">help_outline</mat-icon>
+    <div class="screen"  fxLayout="row wrap" fxLayoutGap="3%" fxLayoutAlign="center">
+        <app-game-slots-wheel *ngFor="let in of [].constructor(amountOfWheels); 
+            index as i;" [attr.id]="'wheel' + i" [wheelNr]="i+1" [duration]="durations[i]" [delay]="delays[i]" 
+            [clickEvent]="clickEvent" (onFinishEvent)="onFinished($event)" [winningValues]="winningValues"></app-game-slots-wheel>
+    </div>
+    <form [formGroup]="betSize" style="text-align: center; vertical-align: middle;" (ngSubmit)="click()" *ngIf="loggedInUser$ | async as user">
+        <mat-form-field>
+          <input
+            matInput
+            aria-label="bet size"
+            placeholder="bet size"
+            type="number"
+            formControlName="amount"
+            step="1"
+            oninput="validity.valid||(value='');"
+            required
+            style="width: 4em; text-align: center;"
+            data-cy="bet-input"
+          />
+          <mat-error
+            *ngIf="betSize.get('amount')['errors'] && betSize.get('amount').touched"
+            data-cy="bet-error"
+          >
+            {{ getErrorMessage(betSize.get('amount')['errors']) }}
+          </mat-error>
+        </mat-form-field>
+        <div>
+            <button 
+              id="goButton" 
+              type="submit" [disabled]="!betSize.valid || clicked" 
+              fxLAyoutAlign="center" 
+              mat-fab 
+              color="primary"
+              data-cy="go-button">
+                Go<mat-icon>casino</mat-icon>
+            </button>
+        </div>
+        <div>
+            <mat-card id="playerLostNotification" *ngIf="playerLostAllMoney">"You ran out of money, here's 1000 coins on the house"</mat-card>
+        </div>
+      </form>
+</div>
+

@@ -1,0 +1,47 @@
+#goButton{
+    width: 5em;
+    height: 5em;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.slot-screen{
+    padding: 1em;
+}
+
+#wrapper{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+#wrapper div{
+    margin: 0 0.5em;
+    height: 1.5em;
+}
+
+#helpButton{
+    position:absolute;
+    left:1%;
+    margin: 0;
+    padding: 0;
+    height: 2.2em;
+    width: 2.2em;
+    font-size: 2em;
+}
+
+#helpButton:hover{
+    cursor:pointer;
+}
+
+#playerLostNotification{
+    color: darkred;
+    margin-top: 1%;
+}
+
+mat-error{
+    margin-bottom: 5em;
+}

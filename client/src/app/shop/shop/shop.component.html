@@ -1,0 +1,38 @@
+<div fxLayout="column" fxLayoutGap="2%">
+  <!--insert search bar-->
+  
+  <mat-card>
+    <button #sortButton (click)="applyFilter()" mat-raised-button>
+      sort by price: {{ sortAscending? 'ascending':'descending' }}
+    </button>
+  </mat-card>
+  
+  <mat-card class="error" *ngIf="errorMessage" data-cy="appError">
+    got an error while loading the shop items: {{ errorMessage }}
+  </mat-card>
+
+  
+  <div id="items" *ngIf="(items$ | async) as items; else loadingOrError">
+    <div
+      fxLayout="row wrap"
+      fxLayout.xs="column"
+      fxLayoutGap="0.5%"
+      fxLayoutAlign="start"
+    >
+      <div 
+        class="item"
+        *ngFor="let item of (items | itemFilter : sortAscending)"
+        fxFlex="0 0 calc(25%-0.5%)"
+        fxFlex.xs="100%"
+      >
+      <!--by adding | async in the html, we tell the system to subscribe asynchronously, and return the result as soon as it comes in, and move on as normal afterwards-->
+        <app-item [item]="item" data-cy="itemCard"></app-item>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loadingOrError>
+    <span *ngIf="errorMessage; else loading"></span>
+    <ng-template #loading><mat-spinner></mat-spinner></ng-template>
+  </ng-template>
+</div>

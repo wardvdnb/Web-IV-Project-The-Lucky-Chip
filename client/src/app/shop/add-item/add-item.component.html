@@ -1,0 +1,56 @@
+<mat-card>
+  <mat-card-title>add item</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="item" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input 
+          matInput
+          aria-label="name"
+          placeholder="name" 
+          type="text" 
+          formControlName="name" 
+          required
+          data-cy="add-item-name"
+        />
+        <mat-error
+          *ngIf="item.get('name')['errors'] && item.get('name').touched"
+        >
+          {{ getErrorMessage(item.get('name')['errors']) }}
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <mat-form-field>
+          <input
+            matInput
+            type="number"
+            aria-label="price"
+            placeholder="price"
+            formControlName="price"
+            data-cy="add-item-price"
+          />
+          <mat-error
+            *ngIf="item.get('price')['errors'] && item.get('price').touched"
+            data-cy="add-item-error"
+          >
+            {{ getErrorMessage(item.get('price')['errors']) }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button type="submit" 
+        [disabled]="!item.valid" 
+        data-cy="add-item-submit">
+          add item
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
+<mat-card class="error" *ngIf="errorMessage" data-cy="appError">
+  got an error while adding the item: {{ errorMessage }}
+</mat-card>
+<mat-card
+  class="confirmation"
+  *ngIf="confirmationMessage"
+  data-cy="appConfirmation"
+>
+  {{ confirmationMessage }}
+</mat-card>

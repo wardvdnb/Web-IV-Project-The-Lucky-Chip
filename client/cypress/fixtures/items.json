@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "name": "bronze medal",
+      "price": 5000
+    },
+    {
+        "id": 2,
+        "name": "silver medal",
+        "price": 7500
+    },
+    {
+        "id": 3,
+        "name": "gold medal",
+        "price": 10000
+    }
+]

@@ -1,0 +1,5 @@
+<div fxLayout="column wrap" fxLayoutGap="1em">
+    <mat-card *ngFor="let value of shown; index as i" fxLayout="column" fxLayoutAlign="center center" class="value"  >
+        <img mat-card-image src='assets/img/slot{{value}}.png' [class.borderedImage]="borderStyles.value[i]">	
+    </mat-card>
+</div>
